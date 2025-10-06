@@ -1,0 +1,72 @@
+services:
+  breezy-auth:
+    build: .
+    container_name: breezy-auth-server
+    restart: unless-stopped
+    ports:
+      - "3011:3000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config:ro
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - JWT_SECRET=your-super-secret-jwt-key
+      - DB_PATH=/app/data/auth.db
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=breezy
+      - DB_PASSWORD=breezy123
+      - DB_DATABASE=breezy_auth
+      - DB_CONNECTION_LIMIT=10
+      - DB_TIMEOUT=60000
+    networks:
+      - breezy-network
+    depends_on:
+      - mysql
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  mysql:
+    image: mysql:8.0
+    container_name: breezy-mysql
+    restart: unless-stopped
+    ports:
+      - "3013:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: breezy_auth
+      MYSQL_USER: breezy
+      MYSQL_PASSWORD: breezy123
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    networks:
+      - breezy-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: breezy-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "3014:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: breezy
+      PMA_PASSWORD: breezy123
+      MYSQL_ROOT_PASSWORD: root123
+    depends_on:
+      - mysql
+    networks:
+      - breezy-network
+
+networks:
+  breezy-network:
+    driver: bridge
+    name: breezy-network
