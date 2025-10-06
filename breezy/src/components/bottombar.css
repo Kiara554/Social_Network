@@ -1,0 +1,84 @@
+/* --- Barre de Navigation Mobile --- */
+.bottom-navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  /*background: var(--card-bg);*/
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* clair par défaut */
+  z-index: 100;
+}
+
+[data-theme="dark"] .bottom-navbar {
+  box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.05); /* ombre claire en dark mode */
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--dark-gray);
+  font-size: 0.8em;
+  padding: 5px;
+}
+
+.bottom-nav-item i {
+  font-size: 1.2em;
+  margin-bottom: 3px;
+  color: var(--dark-gray);
+}
+
+.bottom-nav-item.active {
+  color: var(--primary-color);
+}
+
+.bottom-nav-item.active i {
+  color: var(--primary-color);
+}
+
+.icon-wrapper {
+  position: relative;
+}
+
+/* Badge rouge */
+.notif-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.6rem;
+  font-weight: bold;
+  min-width: 16px;
+  text-align: center;
+  line-height: 1;
+}
+/* === AJOUTS UNIQUEMENT POUR DARK THEME === */
+
+[data-theme="dark"] .bottom-navbar {
+  background: #1a1a1a;
+  box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.05);
+  border-top: 1px solid #333;
+}
+
+[data-theme="dark"] .bottom-nav-item {
+  color: #b0b0b0;
+}
+
+[data-theme="dark"] .bottom-nav-item i {
+  color: #b0b0b0;
+}
+
+[data-theme="dark"] .bottom-nav-item.active,
+[data-theme="dark"] .bottom-nav-item.active i {
+  color: var(--primary-color); 
+}
+

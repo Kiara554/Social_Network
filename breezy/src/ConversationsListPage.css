@@ -1,0 +1,22 @@
+.avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+.message-time {
+    font-size: 0.75rem;
+    color: gray;
+    margin-top: 4px;
+    text-align: right;
+    display: block;
+}
+[data-theme="dark"] .avatar {
+    border: 2px solid #444; /* Adds subtle border for better visibility */
+}
+
+[data-theme="dark"] .message-time {
+    color: #aaa; /* Light gray for better readability on dark backgrounds */
+}

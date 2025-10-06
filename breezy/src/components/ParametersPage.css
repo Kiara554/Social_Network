@@ -1,0 +1,198 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.parameters-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f4f9;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-y: auto;
+}
+
+.parameters-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    max-width: 750px;
+    width: 100%;
+    text-align: center;
+    margin: 0 20px;
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.parameters-header {
+    position: relative;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.parameters-header h1 {
+    color: #333;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.parameters-header p {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.parameters-sections {
+    margin-top: 30px;
+}
+
+.parameter-section {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.parameter-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.parameter-info h3 {
+    color: #333;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.parameter-info p {
+    color: #666;
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+}
+
+.theme-toggle {
+    display: flex;
+    gap: 10px;
+}
+
+.theme-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.theme-btn.active {
+    background: #667eea;
+    color: white;
+}
+
+.toggle-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.enabled {
+    background: #28a745;
+    color: white;
+}
+
+.toggle-btn.disabled {
+    background: #dc3545;
+    color: white;
+}
+
+.logout-btn {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #e84118;
+} 
+[data-theme="dark"] .modal-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .parameters-container {
+    background: #121212;
+}
+
+[data-theme="dark"] .parameters-card {
+    background: #1e1e1e;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .parameters-header h1 {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .parameters-header p {
+    color: #aaaaaa;
+}
+
+[data-theme="dark"] .parameter-item {
+    background: #2a2a2a;
+}
+
+[data-theme="dark"] .parameter-info h3 {
+    color: #f0f0f0;
+}
+
+[data-theme="dark"] .parameter-info p {
+    color: #aaaaaa;
+}
+
+[data-theme="dark"] .theme-btn {
+    background-color: #333;
+    color: #ddd;
+}
+
+[data-theme="dark"] .theme-btn.active {
+    background: #667eea;
+    color: white;
+}
+
+[data-theme="dark"] .close-modal-btn {
+    color: #aaa;
+}
+
+[data-theme="dark"] .close-modal-btn:hover {
+    color: #fff;
+}

@@ -1,0 +1,133 @@
+/* ReportElement.css */
+
+.notify-card {
+    background-color: #fff;
+    /*border-left: 5px solid #e63946;*/
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    padding: 16px 20px;
+    margin-bottom: 15px;
+    transition: transform 0.2s ease;
+}
+
+.notify-card:hover {
+    /*transform: scale(1.01);*/
+    background-color: #fdf4f5;
+}
+
+.notify-header {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #d62828;
+}
+
+.notify-body {
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.notify-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.status {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Style spécifique au statut */
+.status-en_attente {
+    background-color: #edbebe;
+    border-left: 5px solid red;
+    color: #b7791f;
+}
+
+.status-accepté {
+    background-color: #c6f6d5;
+    border-left: 5px solid green;
+    color: #276749;
+}
+
+.status.rejeté {
+    background-color: #fed7d7;
+    color: #c53030;
+}
+
+.action-buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-accept {
+    background-color: #4caf50;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-decline {
+    background-color: #f44336;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+[data-theme="dark"] .notify-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .notify-card:hover {
+    background-color: #2a2a2a;
+}
+
+[data-theme="dark"] .notify-header {
+    color: #ff6b6b;
+}
+
+[data-theme="dark"] .notify-body {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .notify-footer {
+    color: #aaa;
+}
+
+[data-theme="dark"] .status-en_attente {
+    background-color: #3a2525;
+    border-left: 5px solid #ff6b6b;
+    color: #ffb347;
+}
+
+[data-theme="dark"] .status-accepté {
+    background-color: #1e3a1e;
+    border-left: 5px solid #4caf50;
+    color: #8bc34a;
+}
+
+[data-theme="dark"] .status.rejeté {
+    background-color: #3a1e1e;
+    color: #ff6b6b;
+}
+
+[data-theme="dark"] .btn-accept:hover {
+    background-color: #3e8e41;
+}
+
+[data-theme="dark"] .btn-decline:hover {
+    background-color: #d32f2f;
+}

@@ -1,0 +1,22 @@
+/* NotifyPage.css — hérite de MessagePage.css */
+.notification-list {
+    flex: 1;                 /* occupe toute la place */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* on supprime la bordure droite qui séparait autrefois la liste des messages */
+.notification-list,
+.notification-list header {
+    border-right: none;
+}
+
+[data-theme="dark"] .notification-list {
+    background-color: #1e1e1e;
+}
+
+[data-theme="dark"] .notification-list header {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}

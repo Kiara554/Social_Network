@@ -1,0 +1,618 @@
+/* --- Variables et Styles Généraux --- */
+:root {
+    --primary-color: #6a0572; /* Violet foncé */
+    --secondary-color: #ff6f61; /* Corail */
+    --text-color: #333;
+    --background-color: #f0f2f5; /* Gris très clair pour le fond */
+    --light-gray: #e0e0e0;
+    --dark-gray: #555;
+    --font-family: 'Montserrat', sans-serif;
+    --border-radius: 12px; /* Pour les cartes et éléments */
+    --sidebar-width: 250px;
+    --header-height: 60px;
+    --main-content-width-desktop: 80%; /* NOUVEAU: Largeur du contenu principal en pourcentage pour desktop */
+    --mobile-nav-height: 60px;
+}
+
+#root {
+    width: 100%;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--background-color);
+    overflow-x: hidden;
+    min-height: 100vh;
+    /* La propriété `display: flex` sur `body` est inutile ici si `.dashboard-layout`
+       est le seul enfant direct et gère son propre layout. */
+}
+
+/* --- Layout Principal (Flexbox pour Desktop) --- */
+.dashboard-layout {
+    display: flex; /* Indispensable pour aligner la sidebar et le contenu */
+    min-height: 100vh;
+    width: 100%;
+    /* Comme mentionné, 'justify-content: flex-start;' est la valeur par défaut.
+       Les enfants directs (sidebar et main-content-area) seront donc
+       alignés au début (à gauche) sans que vous ayez à l'écrire explicitement. */
+}
+
+/* Cache les éléments mobiles par défaut sur desktop */
+.mobile-only {
+    display: none !important;
+}
+
+
+/* --- Zone de Contenu Principale --- */
+.main-content-area {
+    flex-grow: 1;
+    width: var(--main-content-width-desktop); /* Pour le calcul flexbox explicite */
+    background-color: var(--background-color);
+    padding: 0;
+    /* max-width: 900px; /* Optional: Adjust if you want to limit the feed's width */
+    border-left: 1px solid var(--light-gray); /* Bordure entre sidebar et contenu */
+    border-right: 1px solid var(--light-gray); /* Bordure droite pour un look "encadré" */
+}
+
+/* Header pour la version Desktop */
+.main-header {
+    /* height: var(--header-height); */
+    background-color: white;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+.header-title {
+    font-size: 1.8em;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Section de bienvenue minimaliste */
+.dashboard-hero-minified {
+    padding: 30px;
+    text-align: center;
+    background-color: white;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.welcome-title-minified {
+    font-size: 2em;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.welcome-subtitle-minified {
+    font-size: 1.1em;
+    color: var(--dark-gray);
+    margin: 0;
+}
+
+.post-button {
+    padding: 12px 25px;
+    font-size: 1em;
+}
+
+.post-button i {
+    margin-right: 8px;
+}
+
+/* Section Fil d'actualité */
+.feed-section {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feed-section h2 {
+    font-size: 2.2em;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.content-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.content-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.content-card h3 {
+    font-size: 1.4em;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.content-card p {
+    font-size: 0.95em;
+    color: var(--dark-gray);
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.card-meta {
+    font-size: 0.8em;
+    color: #999;
+    font-style: italic;
+}
+
+/* Pied de page */
+.footer-section {
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 0.85em;
+    color: var(--dark-gray);
+    text-align: center;
+    background-color: white;
+    border-top: 1px solid var(--light-gray);
+}
+
+/* Hide footer on mobile */
+.mobile-hidden {
+    display: block; /* Default for desktop */
+}
+
+
+
+.logo-button {
+    flex-shrink: 0; /* Empêche le logo de rétrécir */
+    width: 60px; /* Taille fixe pour le bouton logo */
+    height: 100%; /* Prend toute la hauteur */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color); /* Couleur distinctive pour le logo */
+    color: white;
+    border-radius: 50%; /* Bouton rond si tu veux */
+    margin: 0 10px; /* Espace autour du logo */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    transform: translateY(-10px); /* Le fait flotter un peu au-dessus */
+}
+
+.logo-icon-mobile {
+    font-size: 2em;
+    color: white;
+}
+.logo-button span { /* Cache le texte sous l'icône du logo */
+    display: none;
+}
+
+
+.loading-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--light-gray);
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-placeholder p {
+    color: var(--primary-color);
+    font-size: 1.1em;
+    margin: 0;
+    font-weight: 500;
+}
+
+.floating-post-button {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 1000;
+    padding: 12px 20px;
+    border-radius: 50px;
+    background-color: #ff6f61; /* ou la couleur de ton thème */
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 20px;
+    width: 200px;
+    height: 70px;
+    cursor: pointer;
+}
+
+.floating-post-button:hover {
+    background-color: #E0245E; /* Couleur au survol */
+}
+/* Style du bouton flottant */
+.floating-post-button {
+    
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #fb4d3e;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Style au survol */
+.floating-post-button:hover {
+    width: auto;
+    padding: 0 20px;
+    border-radius: 30px;
+}
+
+/* Style du texte qui apparaît */
+.floating-post-button span {
+    display: none;
+    margin-left: 8px;
+}
+
+.floating-post-button:hover span {
+    display: inline;
+}
+
+/* Style de l'icône */
+.floating-post-button i {
+    font-size: 24px;
+}
+
+/* Style de la bulle de message */
+.floating-post-button:hover::after {
+    content: "Breezer";
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.floating-post-button:hover::after {
+    opacity: 1;
+}
+.floating-post-button {
+    /* ... autres styles ... */
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating-post-button:hover {
+    animation: none;
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* --- Media Queries (pour gérer la visibilité et le layout) --- */
+
+@media (max-width: 992px) {
+    /* Pour les écrans de taille tablette */
+    .sidebar {
+        width: 80px; /* Réduit la largeur de la sidebar pour les tablettes */
+        min-width: 80px;
+        align-items: center; /* Centre les icônes */
+        padding: 20px 0;
+    }
+    .sidebar-header {
+        display: none; /* Cache le logo de la sidebar sur tablette */
+    }
+    .sidebar-nav-item {
+        padding: 10px 0; /* Ajuste le padding */
+        font-size: 0.9em; /* Réduit un peu la taille de police */
+        flex-direction: column; /* Empile icône et texte */
+        gap: 5px; /* Espace entre icône et texte */
+        border-left: none; /* Pas de bordure latérale sur les petites sidebars */
+        border-radius: 0; /* Pour éviter les coins carrés sur un élément collé */
+    }
+    .sidebar-nav-item i {
+        margin-right: 0; /* Pas de marge à droite pour les icônes */
+        font-size: 1.2em; /* Réduit la taille de l'icône */
+    }
+    .sidebar-nav-item span {
+        font-size: 0.75em; /* Réduit la taille du texte */
+        margin-top: 5px;
+    }
+    .sidebar-nav-item:hover,
+    .sidebar-nav-item.active {
+        background-color: rgba(106, 5, 114, 0.08); /* Conserve le fond */
+        border-left-color: transparent; /* Pas de bordure latérale */
+    }
+    .sidebar-logout-btn {
+        width: 60px; /* Bouton déconnexion réduit à une icône */
+        height: 60px;
+        border-radius: 50%;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px auto 0;
+    }
+    .sidebar-logout-btn i {
+        margin: 0;
+        font-size: 1.5em;
+    }
+    .sidebar-logout-btn span {
+        display: none; /* Cache le texte "Déconnexion" */
+    }
+
+    .main-header {
+        padding: 0 20px;
+    }
+    .header-title {
+        font-size: 1.6em;
+    }
+    .dashboard-hero-minified {
+        padding: 25px;
+    }
+    .welcome-title-minified {
+        font-size: 1.8em;
+    }
+    .welcome-subtitle-minified {
+        font-size: 1em;
+    }
+    .feed-section {
+        padding: 25px;
+    }
+    .content-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    
+}
+
+
+@media (max-width: 768px) {
+    /* Pour les écrans de taille mobile */
+
+    .dashboard-layout {
+        flex-direction: column; /* La mise en page devient verticale */
+    }
+
+    .desktop-only {
+        display: none !important; /* Cache la barre latérale et le header desktop */
+    }
+
+    .mobile-only {
+        display: flex !important; /* Affiche la barre de navigation mobile */
+    }
+
+    .main-content-area {
+        width: 100%; /* Le contenu prend toute la largeur */
+        padding-bottom: var(--mobile-nav-height); /* Espace pour la barre du bas */
+        border-left: none; /* Plus de bordure verticale sur mobile */
+        border-right: none;
+        max-width: 100%; /* Le contenu mobile prend toute la largeur */
+    }
+
+    /* Ajustements pour le header mobile */
+    .dashboard-hero-minified {
+        padding: 20px;
+        gap: 10px;
+        border-bottom: none; /* Pas de bordure si c'est la seule section en haut */
+    }
+
+    .welcome-title-minified {
+        font-size: 1.6em;
+    }
+    .welcome-subtitle-minified {
+        font-size: 0.9em;
+    }
+    .post-button {
+        width: 80%; /* Le bouton "Breezer" peut prendre plus de place */
+        margin-top: 10px;
+    }
+
+    .feed-section {
+        padding: 20px;
+    }
+    .feed-section h2 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+    .content-grid {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+        gap: 15px;
+    }
+
+    /* Cache le footer sur mobile */
+    .footer-section {
+        display: none;
+    }
+    .floating-post-button{
+        bottom: 80px;
+        right: 20px;}
+    
+
+}
+
+@media (max-width: 480px) {
+    /* Ajustements pour les très petits mobiles */
+
+    #root {
+        width: 100%;
+        padding: 0;
+    }
+
+    .dashboard-hero-minified {
+        padding: 15px;
+    }
+    .welcome-title-minified {
+        font-size: 1.4em;
+    }
+    .welcome-subtitle-minified {
+        font-size: 0.8em;
+    }
+    .bottom-nav-item {
+        font-size: 0.7em; /* Réduit un peu le texte de la nav bar du bas */
+    }
+    /* .navbar-container {
+        position: fixed;
+        width: 100%;
+    } */
+     
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --light-gray: #333;
+    --dark-gray: #aaa;
+}
+
+[data-theme="dark"] body {
+    background-color: var(--background-color);
+}
+
+[data-theme="dark"] .main-content-area {
+    background-color: var(--background-color);
+    border-left: 1px solid #444;
+    border-right: 1px solid #444;
+}
+
+[data-theme="dark"] .main-header {
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #444;
+}
+
+[data-theme="dark"] .dashboard-hero-minified {
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #444;
+}
+
+[data-theme="dark"] .welcome-subtitle-minified {
+    color: #aaa;
+}
+
+[data-theme="dark"] .content-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .content-card p {
+    color: #bbb;
+}
+
+[data-theme="dark"] .card-meta {
+    color: #777;
+}
+
+[data-theme="dark"] .footer-section {
+    background-color: #1e1e1e;
+    border-top: 1px solid #444;
+    color: #aaa;
+}
+
+[data-theme="dark"] .modal-content {
+    background: #1e1e1e;
+}
+
+[data-theme="dark"] .close-button {
+    color: #aaa;
+}
+
+[data-theme="dark"] .close-button:hover {
+    color: #fff;
+}
+
+[data-theme="dark"] .loading-spinner {
+    border: 3px solid #333;
+    border-top: 3px solid var(--primary-color);
+}
+
+[data-theme="dark"] .floating-post-button {
+    background-color: #ff6f61;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .floating-post-button:hover {
+    background-color: #E0245E;
+}

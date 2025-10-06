@@ -1,0 +1,83 @@
+.edit-profile-container {
+  padding: 2rem;
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+.edit-avatar {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #6a0572;
+}
+
+.upload-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #ff6b6b;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-field {
+  margin-top: 1.5rem;
+}
+
+.edit-field input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.save-btn {
+  margin-top: 2rem;
+  background-color: #6a0572;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+[data-theme="dark"] .edit-profile-container {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+[data-theme="dark"] .avatar-img {
+  border: 4px solid #9c27b0;
+}
+
+[data-theme="dark"] .upload-btn {
+  background: #ff8a65;
+}
+
+[data-theme="dark"] .edit-field input {
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid #555;
+}
+
+[data-theme="dark"] .edit-field input::placeholder {
+  color: #aaa;
+}
+
+[data-theme="dark"] .save-btn {
+  background-color: #9c27b0;
+}

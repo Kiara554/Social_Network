@@ -1,0 +1,156 @@
+/* Variables CSS pour faciliter les changements de thème */
+/* Ces variables sont déjà dans votre code */
+:root {
+  --primary-color: #6a0572;
+  --secondary-color: #ff6f61;
+  --text-color: #333;
+  --background-color: #f8f8f8;
+  --light-gray: #eee;
+  --dark-gray: #555;
+}
+
+[data-theme="dark"] {
+  --primary-color: #9c27b0;
+  --secondary-color: #ff8a65;
+  --text-color: #e0e0e0;
+  --background-color: #121212;
+  --light-gray: #333;
+  --dark-gray: #aaa;
+}
+
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden; /* Empêche le défilement horizontal */
+  width: 100%;
+}
+
+.home-container {
+  width: 80%;
+  /*max-width: 1200px; !* Adapte la largeur maximale *!*/
+  text-align: center;
+  padding: 40px 20px;
+  box-sizing: border-box; /* Inclut le padding dans la largeur et la hauteur */
+}
+
+.hero-section {
+  background: linear-gradient(135deg, var(--primary-color), #4a0050); /* Un dégradé subtil */
+  padding: 80px 200px;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  margin-bottom: 50px;
+}
+
+.main-title {
+  font-size: 4.5em; /* Très grand titre */
+  margin-bottom: 20px;
+  font-weight: 800; /* Gras et impactant */
+  letter-spacing: -2px; /* Resserre un peu les lettres */
+  line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+  font-size: 1.5em;
+  margin-bottom: 40px;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 25px; /* Espace entre les boutons */
+}
+
+.btn {
+  padding: 18px 35px;
+  border: none;
+  border-radius: 50px; /* Boutons arrondis */
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn.primary {
+  background-color: var(--secondary-color);
+  color: white;
+  /* border: 2px solid var(--secondary-color); */
+}
+
+.btn.primary:hover {
+  background-color: #ff8c7a; /* Lighter shade on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn.secondary {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white; /* Bordure blanche pour le second bouton */
+}
+
+.btn.secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15); /* Légèrement transparent sur hover */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer-section {
+  margin-top: 50px;
+  padding: 20px;
+  font-size: 0.9em;
+  color: var(--dark-gray);
+}
+
+/* Media queries pour l'adaptabilité sur petits écrans */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 60px 15px;
+  }
+
+  .main-title {
+    font-size: 3em;
+  }
+
+  .subtitle {
+    font-size: 1.2em;
+  }
+
+  .button-group {
+    flex-direction: column; /* Boutons empilés sur petits écrans */
+    gap: 15px;
+  }
+
+  .btn {
+    width: 80%; /* Largeur des boutons sur petits écrans */
+    margin: 0 auto;
+    padding: 15px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 2.5em;
+  }
+
+  .subtitle {
+    font-size: 1em;
+  }
+}

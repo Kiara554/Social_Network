@@ -1,0 +1,17 @@
+/* Media Queries for responsivity */
+@media (max-width: 768px) {
+
+    .follow-button {
+        padding: 8px 10px;
+        font-size: 10px;
+        height: 20px;
+        border-radius: 20px;
+        font-weight: 600;
+        background-color: purple;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+}

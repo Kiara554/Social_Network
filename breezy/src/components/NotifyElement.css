@@ -1,0 +1,8 @@
+.unread-notification {
+    /*background-color: var(--background-color-light); !* bleu/gris clair *!*/
+    border-left: 4px solid var(--primary-color);
+}
+[data-theme="dark"] .unread-notification {
+    background-color: rgba(154, 27, 176, 0.1); /* Light purple background in dark mode */
+    border-left: 4px solid var(--primary-color); /* Uses your existing primary color */
+}

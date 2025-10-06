@@ -1,0 +1,55 @@
+.follower-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    background: white;
+    border-radius: 8px;
+}
+
+.follower-avatar img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.follower-info {
+    flex-grow: 1;
+}
+
+.follower-name {
+    font-weight: bold;
+}
+
+.follower-handle {
+    color: gray;
+    font-size: 0.9em;
+}
+
+
+.follower-handle{
+    color: var(--dark-gray);
+    font-size: 0.85em;
+    margin-right: 5px; /* Espace entre handle et temps */
+}
+
+.follower-name{
+    font-weight: 700;
+    margin-right: 5px;
+    color: var(--text-color);
+    font-size: 0.95em;
+}
+[data-theme="dark"] .follower-card {
+    background: #1e1e1e;
+    border-bottom: 1px solid #444;
+}
+
+[data-theme="dark"] .follower-name {
+    color: var(--text-color); /* Utilise votre variable existante (déjà en blanc en dark mode) */
+}
+
+[data-theme="dark"] .follower-handle {
+    color: var(--dark-gray); /* Utilise votre variable existante (déjà en gris clair en dark mode) */
+}
