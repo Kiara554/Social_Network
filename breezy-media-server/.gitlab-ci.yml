@@ -1,0 +1,46 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  CONTAINER_NAME: breezy-media-server
+  IMAGE_NAME: registry.gitlab.com/$CI_PROJECT_PATH/$CONTAINER_NAME:latest
+
+before_script:
+  - echo "🔐 Initialisation SSH pour le déploiement"
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - ssh-keyscan -H 98.66.153.160 >> ~/.ssh/known_hosts
+
+build_image:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+
+  script:
+    - echo "📦 Connexion au registry GitLab"
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - echo "🔨 Build de l'image Docker"
+    - docker build -t $IMAGE_NAME .
+    - echo "🚀 Push de l'image dans le registry"
+    - docker push $IMAGE_NAME
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Connexion SSH et déploiement du container"
+    - ssh wathmani@98.66.153.160 "
+      which docker &&
+      docker login -u '$CI_REGISTRY_USER' -p '$CI_REGISTRY_PASSWORD' $CI_REGISTRY &&
+      docker pull $IMAGE_NAME &&
+      docker stop $CONTAINER_NAME || true &&
+      docker rm $CONTAINER_NAME || true &&
+      docker run -d --name $CONTAINER_NAME --network breezy-network -p 3060:3060 -v /home/wathmani/media-server/medias:/app/medias $IMAGE_NAME
+      "
+  only:
+    - main
+
